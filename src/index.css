@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(3, 13, 38);
+}
+
+input,
+select {
+  font-family: inherit;
+  outline: none;
+}
+
+@layer components {
+
+
+  /* ? header */
+  .header {
+    @apply flex  p-4 bg-[#132040] rounded-lg my-6;
+    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
+  }
+
+
+  /* ? header */
+
+  /* ! TableCoin */
+
+
+  .search_tableCoin_wrapper{
+    @apply flex flex-col max-w-[1400px];
+    margin: 0 auto;
+  }
+
+  .table_coin{
+    @apply w-full max-w-[1400px] border-collapse min-h-screen md:w-fit;
+    margin: 0 auto;
+  }
+
+  .table_title {
+    @apply h-[50px];
+    border-bottom: 1px solid #ccc;
+  }
+
+  .table_title>th {
+    @apply text-left;
+  }
+
+
+  /* ! TableCoin */
+
+  /*? TableRow */
+  .tableRow_data {
+    @apply py-5 gap-2 ;
+    border-bottom: 1px solid #ccc;
+    
+  }
+
+  .chart_wrapper{
+    @apply w-[100px] block ;
+  }
+
+  .listItems {}
+
+  .box_list {
+    @apply flex flex-col w-full gap-2 absolute mt-[1rem] h-[300px] overflow-y-scroll bg-slate-900 rounded-lg p-4;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+
+    &::-moz-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+  }
+
+  .search_list {
+    @apply flex gap-3 items-center py-4;
+    border-bottom: 1px solid #ccc;
+  }
+
+  /*? TableRow */
+  /* ! pagination */
+
+  .paginationContainer {
+    @apply flex justify-center gap-3 items-center my-8 text-white ;
+  }
+
+  .paginationContainer>div {
+    @apply px-2 py-1 rounded-lg;
+    border: 1px solid #1a5ed3;
+  }
+
+  .paginate_border {
+    @apply px-2 py-1 rounded-lg;
+    border: 1px solid #1a5ed3;
+  }
+
+  .paginate_activated {
+    @apply bg-[#1a5ed3] px-2 py-1 rounded-lg;
+  }
+  
+  /* ! pagination */
+  /* ? Chart module */
+  .chartContainer {
+    @apply flex flex-col justify-center  items-center backdrop-blur-[3px] fixed left-0 right-0 top-0 h-full w-full;
+  }
+
+  .closeChart {
+    @apply bg-red-500 cursor-pointer absolute left-[4rem] top-[4rem] px-3 py-1 rounded-lg max-sm:top-[1rem] max-sm:left-[1rem] max-sm:z-20;
+    transition:all 0.5s ease ;
+    -webkit-transition:all 0.5s ease ;
+    -moz-transition:all 0.5s ease ;
+    -ms-transition:all 0.5s ease ;
+    -o-transition:all 0.5s ease ;
+    &:hover {
+      @apply bg-red-600;
+    }
+
+}
+
+.chart{
+  @apply flex justify-center p-4 pb-8 rounded-lg m-4 ;
+}
+
+.chartGraph{
+  @apply w-[800px] h-[500px] max-lg:w-[500px] max-lg:h-[400px] max-md:w-[350px] max-md:h-[400px];
+
+  
+}
+
+.chartContent{
+  @apply  bg-[#040f18] rounded-lg max-sm:mx-[1rem] w-full;
+  border: 1px solid #353535;
+}
+
+.content_wrapper{
+  @apply flex flex-col items-center gap-8 p-4;
+}
+
+.content_buttons{
+  @apply flex gap-8;
+}
+
+.content_buttons > button{
+  @apply rounded-lg p-2;
+  border: 1px solid #1a5ed3;
+}
+.coin_description{
+  @apply flex justify-between gap-2 w-full ;
+  
+}
+
+.coin_description > p {
+  @apply rounded-lg p-2;
+  border: 1px solid #1a5ed3;
+}
+  /* ? Chart module */
+/** favoriteCoin Component */
+.favorite_wrapper{
+  @apply text-white max-w-[1400px] flex flex-col items-center py-4 px-4 min-h-screen;
+  margin: 0 auto;
+}
+.favorite_list_container{
+  @apply flex w-[300px] rounded-lg mb-4 justify-between p-3 last:mb-0;
+  border: 1px solid #1a5ed3;
+
+}
+
+
+
+
+
+
+/** favoriteCoin Component */
+
+
+}
