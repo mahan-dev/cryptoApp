@@ -40,11 +40,13 @@ const TableRow = ({ data, setChart }) => {
     return coinListDb ? JSON.parse(coinListDb) : [];
   });
 
+
   const addHandler = () => {
+
+    const whishListDb = JSON.parse(localStorage.getItem("whishList")) || [];
     const existItem = whishList.find((item) => item.name === name);
 
-    if (existItem) return ;
-    if (!existItem) {
+    if(!existItem) {
       const updateCoin = {
         name,
         symbol,
@@ -52,67 +54,55 @@ const TableRow = ({ data, setChart }) => {
         id,
         star: true,
       };
+      
+      const update_object = [...whishListDb, updateCoin]
+      setWhishList(update_object)
 
-      saveToLocalStorage(updateCoin);
+      localStorage.setItem("whishList", JSON.stringify(update_object))
     }
+
+ 
     const checkStar = star?.find((item) => item.id === id);
     if (checkStar) {
-      removeStar(id);
+
+      const starToRemove = JSON.parse(localStorage.getItem("star"));
+      const whishListDb = JSON.parse(localStorage.getItem("whishList"));
+
+      const removeItem = starToRemove.filter(item => item.id !== id)
+      localStorage.setItem("star", JSON.stringify(removeItem))
+      setStar(removeItem)
+
+      const filterWhishList = whishListDb.filter(item=> item.id !== id );
+      localStorage.setItem("whishList", JSON.stringify(filterWhishList));
+      setWhishList(filterWhishList)
+
+
     }
     if (!checkStar) {
+      const starDb = JSON.parse(localStorage.getItem("star")) || [];
       const updateStar = {
         id: id,
         star: true,
       };
-
-      SaveStar(updateStar);
+      setStar([...starDb, updateStar])
+      localStorage.setItem("star", JSON.stringify(updateStar))
     }
   };
 
   //! mange saving Items to localStorage
 
-  const saveToLocalStorage = (item) => {
-    const coinListsDb = JSON.parse(localStorage.getItem("whishList")) || [];
-    coinListsDb.push(item);
-    localStorage.setItem("whishList", JSON.stringify(coinListsDb));
-    setWhishList(coinListsDb);
-  };
 
-  const SaveStar = (star) => {
-    const starDb = JSON.parse(localStorage.getItem("star")) || [];
-    starDb.push(star);
-    localStorage.setItem("star", JSON.stringify(star));
-    setStar(starDb);
-  };
-
-  const removeStar = (itemId) => {
-    const getStarDb = JSON.parse(localStorage.getItem("star"));
-
-    const removeItem = getStarDb.filter(
-      (removeItem) => removeItem.id !== itemId
-    );
-
-    localStorage.setItem("star", JSON.stringify(removeItem));
-
-    setStar(removeItem);
-
-    const getWhishDb = JSON.parse(localStorage.getItem("whishList"));
-    const removeW = getWhishDb.filter((getWhishDb) => getWhishDb.id !== itemId);
-    localStorage.setItem("whishList", JSON.stringify(removeW));
-    setWhishList(removeW);
-  };
-
-  //! mange saving Items to localStorage
-
+  
   useEffect(() => {
     setStar(JSON.parse(localStorage.getItem("star")));
   }, []);
-
+  
   useEffect(() => {
     localStorage.setItem("whishList", JSON.stringify(whishList));
     localStorage.setItem("star", JSON.stringify(star));
   }, [whishList, star]);
-
+  
+  //! mange saving Items to localStorage
   return (
     <tr className="tableRow_data">
       <td

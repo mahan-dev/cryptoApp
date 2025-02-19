@@ -23,9 +23,12 @@ const TableCoin = (props) => {
 
             coins.map((coin) => (
                 <TableRow key={coin.id} data={coin} setChart={setChart} />
-            )) : (<section>
+            )) : (<tr className="">
+              <td className="my-4">
                 error happened
-            </section>)
+
+              </td>
+            </tr>)
         }
       </tbody>
     </table>
